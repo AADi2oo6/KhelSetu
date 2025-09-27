@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-jz*^nqp%6253sdqvpo(%^64po9-^qkobx9mdsy7vr3(tmnci%m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['2fb3d425d7e0.ngrok-free.app']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:

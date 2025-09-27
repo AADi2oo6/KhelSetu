@@ -104,23 +104,23 @@ class RegisterFaceView(APIView):
         except Exception as e:
             return Response({'error': f'An error occurred: {str(e)}'}, status=500)
 
-from rest_framework import viewsets, permissions
+from rest_framework import generics, permissions
 from .models import Profile
 from .serializers import ProfileSerializer
 # ... (keep all your other existing imports and views)
 
-class ProfileViewSet(viewsets.ModelViewSet):
+class ProfileView(generics.RetrieveUpdateAPIView):
     """
-    API endpoint that allows users to view or edit their profile.
+    API endpoint that allows users to retrieve and update their own profile.
     """
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):
-        # This view should only return the profile for the currently authenticated user.
-        return Profile.objects.filter(user=self.request.user)
-
-    def perform_create(self, serializer):
-        # When a new profile is created, associate it with the current user.
-        serializer.save(user=self.request.user)
+    def get_object(self):
+        """
+        This method returns the profile object for the currently authenticated user.
+        """
+        # Get or create the profile for the user making the request
+        profile, created = Profile.objects.get_or_create(user=self.request.user)
+        return profile

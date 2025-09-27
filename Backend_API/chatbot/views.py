@@ -12,7 +12,7 @@ except AttributeError:
     print("GEMINI_API_KEY not found in environment variables.")
 
 class ChatbotView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         user_message = request.data.get('message')
