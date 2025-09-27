@@ -14,7 +14,10 @@ from pathlib import Path
 import os
 import dj_database_url
 
+from dotenv import load_dotenv
+load_dotenv()
 
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,7 +31,7 @@ SECRET_KEY = 'django-insecure-jz*^nqp%6253sdqvpo(%^64po9-^qkobx9mdsy7vr3(tmnci%m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
